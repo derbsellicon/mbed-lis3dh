@@ -7,7 +7,7 @@
  *  http://www.page.sannet.ne.jp/kenjia/index.html
  *  http://mbed.org/users/kenjiArai/
  *      Created: July      14th, 2014 
- *      Revised: August    29th, 2014
+ *      Revised: September  7th, 2014
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
  * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
@@ -24,7 +24,8 @@ LIS3DH::LIS3DH (PinName p_sda, PinName p_scl,
 }
 
 LIS3DH::LIS3DH (I2C& p_i2c,
-    uint8_t addr, uint8_t data_rate, uint8_t fullscale) : i2c(p_i2c) { 
+    uint8_t addr, uint8_t data_rate, uint8_t fullscale) : i2c(p_i2c) {
+    i2c.frequency(400000); 
     initialize (addr, data_rate, fullscale);
 }
 
@@ -129,6 +130,10 @@ uint8_t LIS3DH::data_ready() {
         }
     }
     return 1;
+}
+
+void LIS3DH::frequency(int hz) {
+    i2c.frequency(hz);
 }
 
 uint8_t LIS3DH::read_reg(uint8_t addr) {

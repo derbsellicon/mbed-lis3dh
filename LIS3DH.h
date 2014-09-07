@@ -7,7 +7,7 @@
  *  http://www.page.sannet.ne.jp/kenjia/index.html
  *  http://mbed.org/users/kenjiArai/
  *      Created: July      14th, 2014 
- *      Revised: August    29th, 2014
+ *      Revised: September  7th, 2014
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
  * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
@@ -180,6 +180,12 @@ public:
       * @return 1 = Ready
       */
     uint8_t data_ready();
+
+    /** Set I2C clock frequency
+      * @param freq.
+      * @return none
+      */
+    void frequency(int hz);
 
     /** Read register (general purpose)
       * @param register's address
