@@ -7,7 +7,7 @@
  *  http://www.page.sannet.ne.jp/kenjia/index.html
  *  http://mbed.org/users/kenjiArai/
  *      Created: July      14th, 2014 
- *      Revised: September  7th, 2014
+ *      Revised: December  27th, 2014
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
  * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
