@@ -1,12 +1,12 @@
 /*
- * mbed library program 
+ * mbed library program
  *  LIS3DH MEMS motion sensor: 3-axis "nano" accelerometer, made by STMicroelectronics
  *      http://www.st-japan.co.jp/web/jp/catalog/sense_power/FM89/SC444/PF250725
  *
  * Copyright (c) 2014,'15 Kenji Arai / JH1PJL
  *  http://www.page.sannet.ne.jp/kenjia/index.html
  *  http://mbed.org/users/kenjiArai/
- *      Created: July      14th, 2014 
+ *      Created: July      14th, 2014
  *      Revised: Feburary  24th, 2015
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
@@ -104,7 +104,7 @@
 #define LIS3DH_FS_8G           2
 #define LIS3DH_FS_16G          3
 
-// definition for Nomalization 
+// definition for Nomalization
 #define LIS3DH_SENSITIVITY_2G  (0.001F)
 #define LIS3DH_SENSITIVITY_4G  (0.002F)
 #define LIS3DH_SENSITIVITY_8G  (0.004F)
@@ -136,7 +136,8 @@
  * @endcode
  */
 
-class LIS3DH{
+class LIS3DH
+{
 public:
     /** Configure data pin
       * @param data SDA and SCL pins
@@ -145,7 +146,7 @@ public:
       * @param full scale selection, +/-2g to +/-16g
       */
     LIS3DH(PinName p_sda, PinName p_scl,
-        uint8_t addr, uint8_t data_rate, uint8_t fullscale);
+           uint8_t addr, uint8_t data_rate, uint8_t fullscale);
 
     /** Configure data pin
       * @param data SDA and SCL pins
@@ -154,13 +155,13 @@ public:
       * @default full scale selection = +/-8g
       */
     LIS3DH(PinName p_sda, PinName p_scl, uint8_t addr);
-   
+
     /** Configure data pin (with other devices on I2C line)
       * @param I2C previous definition
       * @param other parameters -> please see LIS3DH(PinName p_sda, PinName p_scl,...)
       */
     LIS3DH(I2C& p_i2c,
-        uint8_t addr, uint8_t data_rate, uint8_t fullscale);
+           uint8_t addr, uint8_t data_rate, uint8_t fullscale);
 
     /** Configure data pin (with other devices on I2C line)
       * @param I2C previous definition
@@ -169,21 +170,21 @@ public:
       * @default full scale selection = +/-8g
       */
     LIS3DH(I2C& p_i2c, uint8_t addr);
-   
+
     /** Read a float type data from acc
       * @param float type of three arry's address, e.g. float dt_usr[3];
       * @return acc motion data unit: m/s/s(m/s2)
-      * @return dt_usr[0]->x, dt_usr[1]->y, dt_usr[2]->z 
+      * @return dt_usr[0]->x, dt_usr[1]->y, dt_usr[2]->z
       */
     void read_data(float *dt_usr);
 
     /** Read a float type data from acc
       * @param float type of three arry's address, e.g. float dt_usr[3];
       * @return acc motion data unit: mg
-      * @return dt_usr[0]->x, dt_usr[1]->y, dt_usr[2]->z 
+      * @return dt_usr[0]->x, dt_usr[1]->y, dt_usr[2]->z
       */
     void read_mg_data(float *dt_usr);
-   
+
     /** Read a acc ID number
       * @param none
       * @return if STM MEMS acc, it should be I_AM_ LIS3DH(0x33)
@@ -220,13 +221,13 @@ protected:
     void read_reg_data(char *data);
 
     I2C _i2c;
-  
+
 private:
     float   fs_factor;  // full scale factor
     char    dt[2];      // working buffer
     uint8_t acc_addr;   // acc sensor address
     uint8_t acc_id;     // acc ID
-    uint8_t acc_ready;  // acc is on I2C line = 1, not = 0    
+    uint8_t acc_ready;  // acc is on I2C line = 1, not = 0
 };
 
 #endif      // LIS3DH_H
