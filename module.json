@@ -1,0 +1,15 @@
+{
+  "name": "mbed-lis3dh",
+  "version": "0.0.2",
+  "description": "mbed library to drive the lis3dh accelerometer. it is a fork of Kenji Aral works: https://developer.mbed.org/users/kenjiArai/code/LIS3DH/ — Edit",
+  "keywords": [
+    "lis3dh",
+    "mbed"
+  ],
+  "author": "Zakaria ElQotbi",
+  "homepage": "https://github.com/derbsellicon/mbed-lis3dh",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "mbed-drivers": "*"
+  }
+}
