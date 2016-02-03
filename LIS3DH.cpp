@@ -93,9 +93,13 @@ void LIS3DH::read_reg_data(char *data)
     // of the subaddress field.
     // In other words, SUB(7) must be equal to ‘1’ while SUB(6-0) represents the address
     // of the first register to be read.
-    dt[0] = LIS3DH_OUT_X_L | 0x80;
-    _i2c.write(acc_addr, dt, 1, true);
-    _i2c.read(acc_addr, data, 6, false);
+    int off = LIS3DH_OUT_X_L;
+    int i=0;
+    for(i=0;i<6;i++,off++,data++){
+	dt[0] = off;
+	_i2c.write(acc_addr, dt, 1, false);
+	_i2c.read(acc_addr, data, 1, false);
+    }
 }
 
 void LIS3DH::read_mg_data(float *dt_usr)
