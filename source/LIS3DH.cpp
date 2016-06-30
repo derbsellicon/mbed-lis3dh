@@ -57,11 +57,14 @@ void LIS3DH::initialize (uint8_t addr, uint8_t data_rate, uint8_t fullscale)
         acc_ready = 0;
         return;     // acc chip is NOT on I2C line then terminate
     }
+
     //  Reg.1
     dt[0] = LIS3DH_CTRL_REG1;
     dt[1] = 0x07;
+    dt[1] |= (1<<3); // active low power mode
     dt[1] |= data_rate << 4;
     _i2c.write(acc_addr, dt, 2, false);
+
     //  Reg.4
     dt[0] = LIS3DH_CTRL_REG4;
     dt[1] = 0x08;  // High resolution
