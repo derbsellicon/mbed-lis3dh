@@ -44,6 +44,31 @@ LIS3DH::LIS3DH (I2C& p_i2c, uint8_t addr) : _i2c(p_i2c)
     initialize (addr, LIS3DH_DR_NR_LP_50HZ, LIS3DH_FS_8G);
 }
 
+void LIS3DH::disable (void)
+{
+    dt[0] = LIS3DH_CTRL_REG1;
+    dt[1] = 0x07;
+    dt[1] |= (1<<3); // active low power mode
+    dt[1] |= LIS3DH_DR_PWRDWN << 4;
+    _i2c.write(acc_addr, dt, 2, false);
+    acc_enabled = false;
+}
+
+bool LIS3DH::is_enabled (void)
+{
+    return acc_enabled;
+}
+
+void LIS3DH::renable (void)
+{
+    dt[0] = LIS3DH_CTRL_REG1;
+    dt[1] = 0x07;
+    dt[1] |= (1<<3); // active low power mode
+    dt[1] |= rate << 4;
+    _i2c.write(acc_addr, dt, 2, false);
+    acc_enabled = true;
+}
+
 void LIS3DH::initialize (uint8_t addr, uint8_t data_rate, uint8_t fullscale)
 {
     // Check acc is available of not
@@ -64,6 +89,7 @@ void LIS3DH::initialize (uint8_t addr, uint8_t data_rate, uint8_t fullscale)
     dt[1] |= (1<<3); // active low power mode
     dt[1] |= data_rate << 4;
     _i2c.write(acc_addr, dt, 2, false);
+    rate = data_rate;
 
     //  Reg.4
     dt[0] = LIS3DH_CTRL_REG4;
@@ -86,6 +112,7 @@ void LIS3DH::initialize (uint8_t addr, uint8_t data_rate, uint8_t fullscale)
         default:
             ;
     }
+    acc_enabled = true;
 }
 
 void LIS3DH::read_reg_data(char *data)

@@ -216,6 +216,10 @@ public:
       */
     void write_reg(uint8_t addr, uint8_t data);
 
+    void disable (void);
+    void renable (void);
+    bool is_enabled(void);
+
 protected:
     void initialize(uint8_t, uint8_t, uint8_t);
     void read_reg_data(char *data);
@@ -228,6 +232,8 @@ private:
     uint8_t acc_addr;   // acc sensor address
     uint8_t acc_id;     // acc ID
     uint8_t acc_ready;  // acc is on I2C line = 1, not = 0
+    uint8_t rate;       // acc data rate.
+    bool    acc_enabled;// acc is power up.
 };
 
 #endif      // LIS3DH_H
