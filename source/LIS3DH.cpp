@@ -25,6 +25,18 @@ LIS3DH::LIS3DH (PinName p_sda, PinName p_scl,
     initialize (addr, data_rate, fullscale);
 }
 
+LIS3DH::LIS3DH (PinName p_sda, PinName p_scl, uint8_t data_rate, uint8_t fullscale) : _i2c(p_sda, p_scl)
+{
+    _i2c.frequency(400000);
+    
+    //Instanciates objects using LIS3DH_G_CHIP_ADDR -->> test if not ready try LIS3DH_V_CHIP_ADDR
+    initialize (LIS3DH_G_CHIP_ADDR, data_rate, fullscale);
+    if(acc_ready == 0){
+        initialize (LIS3DH_V_CHIP_ADDR, data_rate, fullscale);
+    }
+
+}
+
 LIS3DH::LIS3DH (PinName p_sda, PinName p_scl, uint8_t addr) : _i2c(p_sda, p_scl)
 {
     _i2c.frequency(400000);

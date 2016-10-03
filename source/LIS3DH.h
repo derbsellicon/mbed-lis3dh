@@ -147,6 +147,14 @@ public:
       */
     LIS3DH(PinName p_sda, PinName p_scl,
            uint8_t addr, uint8_t data_rate, uint8_t fullscale);
+           
+    /**
+      * Configure data pins
+      * @param data SDA and SCL pins
+      * @param output data rate selection, power down mode, 1Hz to 5KHz
+      * @param full scale selection, +/-2g to +/-16g
+      */
+    LIS3DH(PinName p_sda, PinName p_scl, uint8_t data_rate, uint8_t fullscale);
 
     /** Configure data pin
       * @param data SDA and SCL pins
